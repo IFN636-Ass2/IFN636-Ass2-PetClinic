@@ -73,44 +73,44 @@ class PetService {
 }
 
 // service class for Treatment
-// class TreatmentService {
+class TreatmentService {
 
-//     // create treatment
-//     async createTreatment(treatment) {
-//         const pet = await PetModel.findById(treatment.petId).lean();
-//         if (!pet) throw new Error('Pet not found');
+    // create treatment
+    async createTreatment(treatment) {
+        const pet = await PetModel.findById(treatment.petId).lean();
+        if (!pet) throw new Error('Pet not found');
 
-//         // create treatment instance to get treatment data
-//         const entityTreatment = new TreatmentEntity(treatment);
-//         console.log(entityTreatment)
-//         console.log("debug", entityTreatment.toObject())
-//         // remove id from object to prepare for create
-//         const { _id, ...payload } = entityTreatment.toObject();
+        // create treatment instance to get treatment data
+        const entityTreatment = new TreatmentEntity(treatment);
+        console.log(entityTreatment)
+        console.log("debug", entityTreatment.toObject())
+        // remove id from object to prepare for create
+        const { _id, ...payload } = entityTreatment.toObject();
 
-//         // create treatment in DB
-//         const createdTreatment = await TreatmentModel.create(payload);
-//         return createdTreatment.toObject();
-//     }
+        // create treatment in DB
+        const createdTreatment = await TreatmentModel.create(payload);
+        return createdTreatment.toObject();
+    }
 
-//     // get treatments by pet
-//     async getTreatmentsByPet(petId) {
-//         const pet = await PetModel.exists({ _id: petId });
-//         if (!pet) throw new Error('Pet not found');
+    // get treatments by pet
+    async getTreatmentsByPet(petId) {
+        const pet = await PetModel.exists({ _id: petId });
+        if (!pet) throw new Error('Pet not found');
 
-//         // retrieve treatments from DB
-//         return await TreatmentModel.find({ petId }).sort({ date: -1, _id: -1 }).lean();
-//     }
+        // retrieve treatments from DB
+        return await TreatmentModel.find({ petId }).sort({ date: -1, _id: -1 }).lean();
+    }
 
-//     // delete treatment
-//     async deleteTreatment(id) {
-//         const treatment = await TreatmentModel.findById(id).lean();
-//         if (!treatment) throw new Error('Treatment not found');
-//         await TreatmentModel.deleteOne({ _id: id });
-//         return { message: 'Treatment deleted' };
-//     }
-// }
+    // delete treatment
+    async deleteTreatment(id) {
+        const treatment = await TreatmentModel.findById(id).lean();
+        if (!treatment) throw new Error('Treatment not found');
+        await TreatmentModel.deleteOne({ _id: id });
+        return { message: 'Treatment deleted' };
+    }
+}
 
-// module.exports = {
-//     PetService: new PetService(),
-//     TreatmentService: new TreatmentService(),
-// };
+module.exports = {
+    PetService: new PetService(),
+    TreatmentService: new TreatmentService(),
+};
