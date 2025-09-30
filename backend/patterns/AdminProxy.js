@@ -15,7 +15,17 @@ class AdminOnlyProxy {
     return this.service.deletePet(id);
   }
 
-  
+   // only admin actor can delete treatment
+  async deleteTreatment(id) {
+    const isAdmin = this.actor.role === 'admin'
+    if (!isAdmin) {
+      const error = new Error('Only admin can delete.')
+      error.status = 403;
+      throw error;
+    }
+    return this.service.deleteTreatment(id);
+  }
+
   // other methods are accessible to all roles
   async createPet(pet) { return this.service.createPet(pet); }
   async getPets() { return this.service.getPets(); }
