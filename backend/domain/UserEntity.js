@@ -112,3 +112,58 @@ class UserEntity {
   }
 
 }
+
+// Inheritance
+// Subclass Admin for UserEntity
+class AdminUser extends UserEntity {
+  constructor(args = {}) {
+    super({ ...toPlain(args), role: 'admin' });
+  }
+  getPermissions() {
+    return [
+      'appointment:view', 'appointment:update', 'appointment:create', 'appointment:delete',
+      'pet:view', 'pet:update', 'pet:create', 'pet:delete',
+      'treatment:view', 'treatment:create', 'treatment:delete',
+      'user:view', 'user:update', 'user:create', 'user:delete'
+    ];
+  }
+  setRole(role) {
+    if (['admin', 'staff'].includes(String(role).trim())) {
+      super.setRole(role);
+    }
+  }
+
+  setPosition(position) {
+    super.setPosition(position);
+  }
+
+}
+
+// Subclass Staff for UserEntity
+class StaffUser extends UserEntity {
+  constructor(args = {}) {
+    super({ ...toPlain(args), role: 'staff' });
+  }
+  getPermissions() {
+    return [
+      'appointment:view', 'appointment:update', 'appointment:create', 'appointment:delete',
+      'pet:view', 'pet:update', 'pet:create',
+      'treatment:view', 'treatment:create',
+      'user:view', 'user:update', 'user:create'
+    ];
+  }
+  setRole(role) {
+    throw new Error('Not have permission to set role'); 
+    }
+
+  setPosition(position) {
+    throw new Error('Not have permission to set position'); 
+  }
+  
+  }
+
+module.exports = {
+  UserEntity,
+  AdminUser,
+  StaffUser
+};
