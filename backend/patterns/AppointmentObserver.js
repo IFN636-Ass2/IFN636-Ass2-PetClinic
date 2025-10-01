@@ -30,7 +30,7 @@ class PetObserver {
         this.petName = petName;
     }
     update(event) {
-        logger.info(`owner of pet ${this.petName} received notification: ${event}`);
+        logger.info(`Owner ${this.petName} received notification: ${event}`);
     }
 }
 
