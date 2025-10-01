@@ -534,3 +534,6 @@ describe('Delete Treatment Test', () => {
         expect(res.json.calledWithMatch({ message: 'Only admin can delete' })).to.be.true;
     });
 });
+
+
+
