@@ -12,6 +12,7 @@ const {
     addTreatment,
     getTreatments,
     deleteTreatment
+    
 } = require('../controllers/petController');
 
 const {
