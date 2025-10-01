@@ -50,7 +50,7 @@ const AppointmentList = ({ appointments, setAppointments, setEditingAppointment 
 
           {/* header */}
           <h2 className="mb-3 text-lg font-extrabold tracking-tight">
-            Pet: {appt.petId.name || appt.pet?.name || '—'}
+            Pet: {appt.petId?.name ?? appt.pet?.name ?? '—'}
           </h2>
 
           {/* info */}
