@@ -8,6 +8,8 @@ import Pets from './pages/Pets';
 import PetDetails from './pages/PetDetails';
 import Home from './pages/Home';
 import Footer from './components/Footer';
+import AppointmentPet from './pages/AppointmentPet';
+
 
 function App() {
   return (
