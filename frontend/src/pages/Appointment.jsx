@@ -41,6 +41,7 @@ const Appointments = () => {
         editingAppointment={editingAppointment}
         setEditingAppointment={setEditingAppointment}
         onSaved={fetchAppointments} 
+        canCreate={false} 
       />
 
       {loading && (
