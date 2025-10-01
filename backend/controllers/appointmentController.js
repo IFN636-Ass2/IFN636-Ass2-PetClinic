@@ -1,6 +1,5 @@
 const appointmentService = require("../services/appointmentService");
 const { UserObserver, PetObserver, notifier } = require("../patterns/AppointmentObserver");
-const { AdapterMail } = require("../patterns/AdapterEmail");
 const { facade } = require("../patterns/AppointmentFacade");
 
 // Create appointment
