@@ -7,7 +7,9 @@ const {
   createPet,
   getPets,
   updatePet,
-  deletePet,
+  addTreatment,
+    getTreatments,
+    deleteTreatment
 } = require('../controllers/petController');
 
 const { expect } = chai;
