@@ -10,13 +10,13 @@ class Logger {
     info(message) {
         const timestamp = new Date().toISOString();
         this.logs.push({ message, timestamp });
-        console.log(`Info: ${timestamp} - ${message}`);
+        console.log(`Info message: ${timestamp} - ${message}`);
     }
     
     error(message) {
         const timestamp = new Date().toISOString();
         this.logs.push( {message, timestamp });
-        console.log(`Error: ${timestamp} - ${message}`);
+        console.log(`Error message: ${timestamp} - ${message}`);
     }
 }
 
