@@ -1,4 +1,5 @@
 const bcrypt = require('bcrypt');
+const { toPlain } = require('../utils/toPlain');
 
 // Parent class UserEntity
 class UserEntity {
@@ -6,6 +7,8 @@ class UserEntity {
   #id; #name; #phone; #email; #password; #role; #position; #address;
 
   constructor({ _id, name, phone, email, password, position = null, address = null, role = 'staff' }) {
+    console.log("debug", name)
+
     if (!name || !email || !password) {
       throw new Error('User: name, email, password are required');
     }
@@ -113,8 +116,8 @@ class UserEntity {
 // Inheritance
 // Subclass Admin for UserEntity
 class AdminUser extends UserEntity {
-  constructor(args) {
-    super({ ...args._doc, role: 'admin' });
+  constructor(args = {}) {
+    super({ ...toPlain(args), role: 'admin' });
   }
   getPermissions() {
     return [
@@ -124,13 +127,22 @@ class AdminUser extends UserEntity {
       'user:view', 'user:update', 'user:create', 'user:delete'
     ];
   }
+  setRole(role) {
+    if (['admin', 'staff'].includes(String(role).trim())) {
+      super.setRole(role);
+    }
+  }
+
+  setPosition(position) {
+    super.setPosition(position);
+  }
 
 }
 
 // Subclass Staff for UserEntity
 class StaffUser extends UserEntity {
-  constructor(args) {
-    super({ ...args._doc, role: 'staff' });
+  constructor(args = {}) {
+    super({ ...toPlain(args), role: 'staff' });
   }
   getPermissions() {
     return [
@@ -140,8 +152,15 @@ class StaffUser extends UserEntity {
       'user:view', 'user:update', 'user:create'
     ];
   }
-}
+  setRole(role) {
+    throw new Error('Not have permission to set role'); 
+    }
 
+  setPosition(position) {
+    throw new Error('Not have permission to set position'); 
+  }
+  
+  }
 
 module.exports = {
   UserEntity,
