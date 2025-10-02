@@ -1,0 +1,685 @@
+{
+	"info": {
+		"_postman_id": "bfe5968d-1b3c-4f71-a25e-cdac22d07762",
+		"name": "Pet Clinic",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "47271092",
+		"_collection_link": "https://quynhanhthao-9106225.postman.co/workspace/Thao-Nguyen's-Workspace~22f64712-85dd-4b15-8dc2-1316aa29080f/collection/47271092-bfe5968d-1b3c-4f71-a25e-cdac22d07762?action=share&source=collection_link&creator=47271092"
+	},
+	"item": [
+		{
+			"name": "Register",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"Tester 1\",\r\n    \"email\": \"tester1@gmail.com\",\r\n    \"password\": \"Home12345\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseURL}}/api/auth/register",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"api",
+						"auth",
+						"register"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Login",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"// Parse the response body \r",
+							"let response = pm.response.json(); \r",
+							"// Basic test: status code should be 200 \r",
+							"pm.test(\"Status code is 200\", function () { \r",
+							"pm.response.to.have.status(200); \r",
+							"}); \r",
+							"pm.test(\"Body matches string\", function () { \r",
+							"pm.expect(pm.response.text()).to.include(\"string_you_want_to_search\"); \r",
+							"}); \r",
+							"pm.test(\"Content-Type is present\", function () { \r",
+							"pm.response.to.have.header(\"Content-Type\"); \r",
+							"}); \r",
+							"pm.test(\"Response time is less than 200ms\", function \r",
+							"() { \r",
+							"pm.expect(pm.response.responseTime).to.be.below(200); \r",
+							"});\r",
+							"// Save JWT token to environment variable (adjust key as needed) \r",
+							"if (response.token) { \r",
+							"pm.environment.set(\"jwt_token\", response.token); \r",
+							"console.log(\"JWT Token saved to environment\"); \r",
+							"} else { \r",
+							"console.warn(\"No token found in response!\"); \r",
+							"} "
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer {{jwt_token}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"email\": \"admin1@gmail.com\",\r\n    \"password\": \"Home12345\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseURL}}/api/auth/login",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"api",
+						"auth",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Profile",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer {{jwt_token}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseURL}}/api/auth/profile",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"api",
+						"auth",
+						"profile"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update User",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer {{jwt_token}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"Anh Thao\",\r\n    // \"email\": \"tester1@gmail.com\",\r\n    // \"password\": \"Home12345\",\r\n    // \"phone\": \"0123456789\",\r\n    // \"position\": \"Vet\",\r\n    \"address\": \"Brisbane city\"\r\n    // \"role\": \"admin\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseURL}}/api/auth/profile",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"api",
+						"auth",
+						"profile"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create Pet",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer {{jwt_token}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"name\": \"Meoww\",\r\n  \"age\": 6,\r\n  \"gender\": \"Female\",\r\n  \"species\": \"Cat\",\r\n  \"breed\": \"Bristish long-hair\",\r\n  \"owner\": {\r\n    \"name\": \"Thao\",\r\n    \"phone\": \"9999999999\",\r\n    \"email\": \"\"\r\n  }\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:5001/api/pets",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5001",
+					"path": [
+						"api",
+						"pets"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Pets",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer {{jwt_token}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseURL}}/api/pets",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"api",
+						"pets"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update Pet",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer {{jwt_token}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n//   \"name\": \"Test4\",\r\n    // \"age\": \"6\",\r\n//   \"gender\": \"Female\"\r\n//   \"species\": \"Cat\",\r\n//   \"breed\": \"Bristish\",\r\n  \"owner\": {\r\n//     \"name\": \"Tester\",\r\n    // \"phone\": \"12345\"\r\n    \"email\": \"thao@gmail.com\"\r\n  }\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseURL}}/api/pets/68de711098c4de54a719dc69",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"api",
+						"pets",
+						"68de711098c4de54a719dc69"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete Pet",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer {{jwt_token}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseURL}}/api/pets/68de711098c4de54a719dc69",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"api",
+						"pets",
+						"68de711098c4de54a719dc69"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Add Treatment",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer {{jwt_token}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"vet\": \"test\",\r\n  \"date\": \"2025-09-28T03:30:00.000Z\",\r\n  \"description\": \"tesing treatment\",\r\n  \"treatmentCost\": 10,\r\n  \"medicineCost\": 5,\r\n  \"paymentMethod\": \"Cash\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseURL}}/api/pets/68de09bad3216bd0ac275ab8/treatment",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"api",
+						"pets",
+						"68de09bad3216bd0ac275ab8",
+						"treatment"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Treatments",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer {{jwt_token}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseURL}}/api/pets/68d5437b38cb4319c4704ab4/treatment",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"api",
+						"pets",
+						"68d5437b38cb4319c4704ab4",
+						"treatment"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete Treatment",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer {{jwt_token}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseURL}}/api/pets/68d5437b38cb4319c4704ab4/treatment/68d7edab295e5bd13290bb19",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"api",
+						"pets",
+						"68d5437b38cb4319c4704ab4",
+						"treatment",
+						"68d7edab295e5bd13290bb19"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Add appointment",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer {{jwt_token}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"userId\": \"68d3f2d4bbade4090cafd27a\",\r\n  \"petId\": \"68d8d068374c51bdc29bbbd7\",\r\n  \"date\": \"2025-10-02\",\r\n  \"description\": \"Thao test\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:5001/api/appointments",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5001",
+					"path": [
+						"api",
+						"appointments"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get appointments",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer {{jwt_token}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:5001/api/appointments?petId=68d8d068374c51bdc29bbbd7",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5001",
+					"path": [
+						"api",
+						"appointments"
+					],
+					"query": [
+						{
+							"key": "petId",
+							"value": "68d8d068374c51bdc29bbbd7"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete appointment",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer {{jwt_token}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:5001/api/appointments/68dd520319be1db341598632",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5001",
+					"path": [
+						"api",
+						"appointments",
+						"68dd520319be1db341598632"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "baseURL",
+			"value": "http://localhost:5001"
+		},
+		{
+			"key": "jwt_token",
+			"value": ""
+		}
+	]
+}
