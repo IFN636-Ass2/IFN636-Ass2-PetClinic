@@ -84,8 +84,10 @@ class UserService {
     updateUser.setPhone(patch.phone)
     updateUser.setAddress(patch.address)
     updateUser.setPassword(patch.password)
-    updateUser.setRole(patch.role)
-    updateUser.setPosition(patch.position)
+    if (patch.role || patch.position) {
+      updateUser.setRole(patch.role)
+      updateUser.setPosition(patch.position)
+    };
 
     return await UserModel.findOneAndUpdate({_id: id}, {...updateUser.fromRequest()});
   }
