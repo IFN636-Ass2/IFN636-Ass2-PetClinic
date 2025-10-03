@@ -6,25 +6,19 @@ The **Pet Clinic Management App** helps veterinarians and clinic staff manage pe
 
 ## Features
 - **Authentication**: User registration and login/logout.
+- **User Management**: Update user information
 - **Appointment Management**:
   - Create appointments.
   - View, update, and delete appointments.
 - **Pet Management**:
   - Create, view, update, and delete pet profiles.
   - For each pet, view, add, and delete treatments.
-- **User Management**:  
-  - Update pet information
-- **Treatment Management**:  
-  - Record in pet detail section.
-- **Appointment Scheduling & Notification**:  
-  - Save appointments and send notifications to users and pet owners.
 
 ## Tech Stack
     * Backend: Node.js
     * Frontend: React.js
     * Database: MongoDB
     * Deployment / Environment: Local development server running on http://54.66.159.10/
-
 
 ## Project Setup
 
@@ -37,7 +31,7 @@ Make sure you have the following installed:
 
 ### 2. Clone the Repository
     ```bash
-    git clone https://github.com/QuynhAnhThao/PetClinicManagement.git
+    git clone https://github.com/IFN636-Ass2/IFN636-Ass2-PetClinic.git
     cd PetClinicManagement
     ```
 ### 3. Environment Configuration
@@ -56,19 +50,18 @@ Make sure you have the following installed:
 ---
 ## Public URL
 - **Pet Clinic Management App**: [http://54.66.159.10/]
-- **Jira board**: [https://quynhanhthao161.atlassian.net/jira/software/projects/PCM/boards/101]
-- **Github repo**: [https://github.com/QuynhAnhThao/PetClinicManagement]
+- **Github repo**: [https://github.com/IFN636-Ass2/IFN636-Ass2-PetClinic.git]
 
 ---
 
 ## Testing Accounts
 - These are demo accounts for testing the app
 - **Account 1**:
-    * Email: tester@gmail.com
-    * Password: home12345
+    * Email: test@gmail.com
+    * Password: Home12345
 - **Account 2**:
-    * Email: tester1@gmail.com
-    * Password: home12345
+    * Email: admin1@gmail.com
+    * Password: Home12345
 
 ## Team member
     * Jaeeun Heo
