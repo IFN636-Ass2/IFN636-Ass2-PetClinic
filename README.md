@@ -12,8 +12,12 @@ The **Pet Clinic Management App** helps veterinarians and clinic staff manage pe
 - **Pet Management**:
   - Create, view, update, and delete pet profiles.
   - For each pet, view, add, and delete treatments.
-
----
+ 
+## Tech Stack
+    * Backend: Python
+    * Frontend: CSS, HTML, React.js
+    * Database: MongoDB
+    * Deployment / Environment: Local development server running on http://54.66.159.10/
 
 ## Project Setup
 
@@ -58,6 +62,9 @@ Make sure you have the following installed:
 - **Account 2**:
     * Email: tester1@gmail.com
     * Password: home12345
-
-
-
+ 
+## Team member
+    * Jaeeun Heo
+    * Quynh Anh Thao Nguyen
+    * Hyojeong Chin 
+    * Juhee Park       
