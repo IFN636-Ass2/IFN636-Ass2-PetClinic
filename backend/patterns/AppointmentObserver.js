@@ -1,4 +1,3 @@
-const {logger} = require('../patterns/LoggerSingleton');
 
 class AppointmentNotifier {
     constructor() {
@@ -20,7 +19,7 @@ class UserObserver {
         this.name = name;
     }
     update(event) {
-        logger.info(`User ${this.name} received notification: ${event}`);
+        console.log(`User ${this.name} received notification: ${event}`);
     }
 }
 
@@ -30,7 +29,7 @@ class PetObserver {
         this.petName = petName;
     }
     update(event) {
-        logger.info(`Pet ${this.petName} received notification: ${event}`);
+        console.log(`Pet ${this.petName} received notification: ${event}`);
     }
 }
 
