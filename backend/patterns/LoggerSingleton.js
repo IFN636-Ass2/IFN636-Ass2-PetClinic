@@ -34,7 +34,7 @@ class Singleton {
 
 }
 
-module.exports = { Singleton, Logger };
+module.exports = { Singleton };
 
 // const logger = new Logger();
 
