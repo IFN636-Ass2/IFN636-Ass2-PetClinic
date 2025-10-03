@@ -62,11 +62,11 @@ class NotificationSender {
 
         logger.info("Notification Sender: All notifications sent");
         // Observer use
-        // notifier.subscribe(userObs);
-        // notifier.subscribe(petObs);
-        // notifier.notify(JSON.stringify({
-        //     type: 'APPOINTMENT_CREATED'
-        // }));
+        notifier.subscribe(userObs);
+        notifier.subscribe(petObs);
+        notifier.notify(JSON.stringify({
+            type: 'APPOINTMENT_CREATED'
+        }));
     }
 }
 
