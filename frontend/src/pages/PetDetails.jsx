@@ -55,6 +55,28 @@ const PetDetails = () => {
     if (user?.token) fetchPet();
   }, [petId, user]);
 
+  // fetch all treatments for this pet
+  useEffect(() => {
+    if (!petId || !user?.token) return;
+    let cancelled = false;
+
+    (async () => {
+      try {
+        const res = await axiosInstance.get(`/api/pets/${petId}/treatment`, {
+          headers: { Authorization: `Bearer ${user.token}` },
+        });
+        if (!cancelled) {
+          setTreatments(Array.isArray(res.data?.treatments) ? res.data.treatments : []);
+        }
+      } catch (err) {
+        console.error('GET treatments error:', err);
+        if (!cancelled) setTreatments([]);
+      }
+    })();
+
+    return () => { cancelled = true; };
+  }, [petId, user?.token]);
+
   // handle form input changes (including nested owner fields)
   const onChange = (e) => {
     const { name, value } = e.target;
