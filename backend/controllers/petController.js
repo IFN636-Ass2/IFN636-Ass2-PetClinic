@@ -65,10 +65,18 @@ const addTreatment = async (req, res) => {
 };
 
 // get treatments of pet
+
+// const getTreatments = async (req, res) => {
+//   try {
+//     const list = await TreatmentService.getTreatmentsByPet(req.params.id);
+//     res.json(Array.isArray(list) ? list : []);
+//   } catch (_err) { res.json([]); }
+// };
 const getTreatments = async (req, res) => {
   try {
-    const list = await TreatmentService.getTreatmentsByPet(req.params.id);
-    res.json(Array.isArray(list) ? list : []);
+    const petId = req.params.petId || req.params.id;
+    const list = await TreatmentService.getTreatmentsByPet(petId);
+    return res.json({ treatments: Array.isArray(list) ? list : [] });
   } catch (_err) { res.json([]); }
 };
 

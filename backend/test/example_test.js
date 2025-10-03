@@ -474,14 +474,14 @@ describe('Get Treatement Test', () => {
   it('should get treatments successfully', async () => {
     const consoleStub = sinon.stub(console, 'log'); //ignore console.log
 
-    const req = { params: { id: 'pet1' } };
+    const req = { params: { petId: 'pet1' } };
     const res = { status: sinon.stub().returnsThis(), json: sinon.spy() };
 
     sinon.stub(TreatmentService, 'getTreatmentsByPet').resolves([{ id: 'treat1' }]);
 
     await getTreatments(req, res);
 
-    expect(res.json.calledWithMatch([{ id: 'treat1' }])).to.be.true;
+    expect(res.json.calledWithMatch({ treatments: [{ id: 'treat1' }] })).to.be.true;
 
     consoleStub.restore();
   });
@@ -489,7 +489,7 @@ describe('Get Treatement Test', () => {
   it('should return empty array on error', async () => {
     const consoleStub = sinon.stub(console, 'log'); //ignore console.log
 
-    const req = { params: { id: 'pet1' } };
+    const req = { params: { petId: 'pet1' } };
     const res = { json: sinon.spy() };
 
     sinon.stub(TreatmentService, 'getTreatmentsByPet').throws(new Error('DB Error'));
