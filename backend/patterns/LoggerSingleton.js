@@ -20,6 +20,22 @@ class Logger {
     }
 }
 
-const logger = new Logger();
+class Singleton {
 
-module.exports = { Logger, logger };
+  constructor() {
+      if (!Singleton.instance) {
+          Singleton.instance = new Logger();
+      }
+  }
+
+  getInstance() {
+      return Singleton.instance;
+  }
+
+}
+
+module.exports = { Singleton, Logger };
+
+// const logger = new Logger();
+
+// module.exports = { Logger, logger };

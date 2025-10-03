@@ -3,8 +3,9 @@ const express = require('express');
 const dotenv = require('dotenv');
 const cors = require('cors');
 const connectDB = require('./config/db');
-const {logger} = require('../backend/patterns/LoggerSingleton');
-
+// const {logger} = require('../backend/patterns/LoggerSingleton');
+const { Singleton } = require('../backend/patterns/LoggerSingleton');
+const logger = new Singleton().getInstance();
 dotenv.config();
 
 

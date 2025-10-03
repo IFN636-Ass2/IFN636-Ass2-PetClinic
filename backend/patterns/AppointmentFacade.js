@@ -1,7 +1,9 @@
 const PetModel = require("../models/Pet");
 const appointmentService = require("../services/appointmentService");
 const { UserObserver, PetObserver, notifier } = require("../patterns/AppointmentObserver")
-const { logger } = require('../patterns/LoggerSingleton');
+// const { logger } = require('../patterns/LoggerSingleton');
+const { Singleton } = require('../patterns/LoggerSingleton');
+const logger = new Singleton().getInstance();
 
 
 // Facade sub system
@@ -55,16 +57,16 @@ class NotificationSender {
         this.notifier.subscribe(petObs);
 
         // Observer sending notification
-        // const message = `Appointment confirmed: ${appointment.petName} on ${appointment.date}`;
-        // this.notifier.notify(message);
+        const message = `Appointment confirmed: ${appointment.petName} on ${appointment.date}`;
+        this.notifier.notify(message);
 
         logger.info("Notification Sender: All notifications sent");
         // Observer use
-        notifier.subscribe(userObs);
-        notifier.subscribe(petObs);
-        notifier.notify(JSON.stringify({
-            type: 'APPOINTMENT_CREATED'
-        }));
+        // notifier.subscribe(userObs);
+        // notifier.subscribe(petObs);
+        // notifier.notify(JSON.stringify({
+        //     type: 'APPOINTMENT_CREATED'
+        // }));
     }
 }
 
