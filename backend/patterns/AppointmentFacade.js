@@ -60,7 +60,6 @@ class NotificationSender {
         this.notifier.notify(message);
 
         logger.info("Notification Sender: All notifications sent");
-
     }
 }
 
