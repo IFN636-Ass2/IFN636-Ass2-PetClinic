@@ -1,3 +1,8 @@
+// const {logger} = require('../patterns/LoggerSingleton');
+// const { Logger } = require('../patterns/LoggerSingleton');
+const { Singleton } = require('../patterns/LoggerSingleton');
+const logger = new Singleton().getInstance();
+// const logger = new Logger().getInstance();
 
 class AppointmentNotifier {
     constructor() {
@@ -19,7 +24,7 @@ class UserObserver {
         this.name = name;
     }
     update(event) {
-        console.log(`User ${this.name} received notification: ${event}`);
+        logger.info(`User ${this.name} received notification: ${event}`);
     }
 }
 
@@ -29,7 +34,7 @@ class PetObserver {
         this.petName = petName;
     }
     update(event) {
-        console.log(`Pet ${this.petName} received notification: ${event}`);
+        logger.info(`Pet ${this.petName} received notification: ${event}`);
     }
 }
 
