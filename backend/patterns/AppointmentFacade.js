@@ -1,7 +1,6 @@
 const PetModel = require("../models/Pet");
 const appointmentService = require("../services/appointmentService");
 const { UserObserver, PetObserver, notifier } = require("../patterns/AppointmentObserver")
-// const { logger } = require('../patterns/LoggerSingleton');
 const { Singleton } = require('../patterns/LoggerSingleton');
 const logger = new Singleton().getInstance();
 
@@ -61,12 +60,7 @@ class NotificationSender {
         this.notifier.notify(message);
 
         logger.info("Notification Sender: All notifications sent");
-        // Observer use
-        // notifier.subscribe(userObs);
-        // notifier.subscribe(petObs);
-        // notifier.notify(JSON.stringify({
-        //     type: 'APPOINTMENT_CREATED'
-        // }));
+
     }
 }
 
