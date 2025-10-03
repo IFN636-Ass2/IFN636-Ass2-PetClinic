@@ -1,5 +1,5 @@
 // const {logger} = require('../patterns/LoggerSingleton');
-const { Logger } = require('../patterns/LoggerSingleton');
+// const { Logger } = require('../patterns/LoggerSingleton');
 const { Singleton } = require('../patterns/LoggerSingleton');
 const logger = new Singleton().getInstance();
 // const logger = new Logger().getInstance();
